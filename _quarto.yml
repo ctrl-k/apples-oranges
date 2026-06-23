@@ -1,0 +1,15 @@
+project:
+  type: default
+  output-dir: _output
+
+format:
+  revealjs:
+    theme:
+      - default
+      - schemes/select-default.scss
+      - apples-oranges.scss
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    center-title-slide: false
+    date-format: "MMMM YYYY"

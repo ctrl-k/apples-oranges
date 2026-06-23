@@ -1,0 +1,52 @@
+---
+title: "Your Comparison Title"
+subtitle: "Optional subtitle"
+author: "Your Name"
+date: today
+date-format: "MMMM YYYY"
+format:
+  revealjs:
+    theme:
+      - default
+      - schemes/select-default.scss
+      - apples-oranges.scss
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    css: apples-oranges.css
+    center-title-slide: false
+    title-slide-attributes:
+      class: title-split
+---
+
+## First item {.apple}
+
+Content for the first side of your comparison.
+
+## Second item {.orange}
+
+Content for the second side of your comparison.
+
+## Shared context {.bananas}
+
+Neutral content that does not take a side — agenda, summary, or transition.
+
+## {.compare}
+
+::: {.compare-grid}
+::: {.compare-apple}
+::: {.compare-label}
+Apples
+:::
+
+Your first-column content here.
+:::
+
+::: {.compare-orange}
+::: {.compare-label}
+Oranges
+:::
+
+Your second-column content here.
+:::
+:::

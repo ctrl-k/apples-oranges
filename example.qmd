@@ -1,0 +1,125 @@
+---
+title: "Apples vs. Oranges"
+subtitle: "A comparison deck template"
+author: "Your Name"
+date: today
+date-format: "MMMM YYYY"
+format:
+  revealjs:
+    theme:
+      - default
+      - schemes/select-deepmind.scss
+      - apples-oranges.scss
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    footer: "Apples & Oranges"
+    css: apples-oranges.css
+    center-title-slide: false
+    title-slide-attributes:
+      class: title-split
+---
+
+## Why compare? {.apple}
+
+- Two options, one decision
+- Each side gets its own visual voice
+- Contrast keeps the audience oriented
+
+::: {.callout-note}
+Apple slides use **apple text** on a solid **orange** background. Callouts use neutral **bananas** text on desaturated orange-tinted panels.
+:::
+
+```python
+# regular syntax highlighting
+variety = "honeycrisp"
+```
+
+::: {.footer-label}
+Apple on orange
+:::
+
+## Why compare? {.orange}
+
+- Mirror structure, inverted palette
+- Same layout, different emphasis
+- Easy to scan which side you're on
+
+::: {.callout-tip}
+Orange slides use **orange text** on a solid **apple** background. Callouts use neutral **bananas** text on desaturated apple-tinted panels.
+:::
+
+```python
+# regular syntax highlighting
+variety = "cara_cara"
+```
+
+::: {.footer-label}
+Orange on apple
+:::
+
+## {.compare}
+
+::: {.compare-grid}
+::: {.compare-apple}
+::: {.compare-label}
+Apples
+:::
+
+### Strengths
+
+- Crisp texture
+- Long shelf life
+- Great for baking
+
+### Trade-offs
+
+- Less juice per bite
+- Fewer varieties in season
+:::
+
+::: {.compare-orange}
+::: {.compare-label}
+Oranges
+:::
+
+### Strengths
+
+- High vitamin C
+- Segment-friendly
+- Bright, fresh flavor
+
+### Trade-offs
+
+- Peel can be messy
+- Shorter peak freshness
+:::
+:::
+
+## Neutral ground {.bananas}
+
+- Use `{.bananas}` for content that does not take a side
+- Readable body text on a **bananas** (neutral) background
+- Callouts and code use desaturated bananas-tinted panels
+
+::: {.callout-note}
+Neutral slides sit outside the apples / oranges pairing — good for summaries, agenda, or shared context.
+:::
+
+::: {.footer-label}
+Bananas neutral
+:::
+
+## Summary {.apple}
+
+- [Apples]{.text-apple}, [oranges]{.text-orange}, and [bananas]{.text-bananas} — apples/oranges pair across sides; bananas is the neutral tone — see `schemes/catalog.yml`
+- Use [bananas]{.text-bananas} for neutral emphasis that reads on either side
+- Color scheme: set `schemes/select-<name>.scss` in the theme list (`schemes/catalog.yml`)
+- Title slide: `title-slide-attributes: { class: title-split }`
+- Item slides: `{.apple}` and `{.orange}`
+- Neutral slides: `{.bananas}`
+- Comparison: `{.compare}` with `.compare-grid`
+
+::: {.footer-label}
+Template ready
+:::

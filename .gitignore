@@ -1,0 +1,14 @@
+# Quarto build output
+/_output/
+/.quarto/
+**/*.quarto_ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~

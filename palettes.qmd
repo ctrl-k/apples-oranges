@@ -1,0 +1,464 @@
+---
+title: "Palettes"
+subtitle: "apples-oranges color schemes"
+format:
+  revealjs:
+    theme:
+      - default
+      - schemes/select-default.scss
+      - apples-oranges.scss
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    footer: "Palette catalog"
+---
+
+## default {.palette-show .palette-default}
+
+::: {.palette-desc}
+Warm paper base with crimson / amber identities and a muted neutral bananas tone.
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::
+
+## nord {.palette-show .palette-nord}
+
+::: {.palette-desc}
+Snow-storm base with polar night / frost light / frost deep blues.
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::
+
+## solarized {.palette-show .palette-solarized}
+
+::: {.palette-desc}
+Solarized base03 dark / orange accent / cyan highlight.
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::
+
+## dracula {.palette-show .palette-dracula}
+
+::: {.palette-desc}
+Dracula current line / foreground / comment — core dark and light, no neon accents.
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::
+
+## gruvbox {.palette-show .palette-gruvbox}
+
+::: {.palette-desc}
+Gruvbox bg0 dark / orange identities and muted neutral.
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::
+
+## catppuccin {.palette-show .palette-catppuccin}
+
+::: {.palette-desc}
+Catppuccin Mocha with blue / mauve / green accents.
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::
+
+## rose-pine {.palette-show .palette-rose-pine}
+
+::: {.palette-desc}
+Rosé Pine with foam / rose / pine accents.
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::
+
+## grey {.palette-show .palette-grey}
+
+::: {.palette-desc}
+Near-black apples, near-white oranges, mid-grey bananas on a neutral base.
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::
+
+## google {.palette-show .palette-google}
+
+::: {.palette-desc}
+Google News blue (#174EA6) and red (#A50E0E) on light tinted surfaces; title uses medium blue (#4285F4).
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::
+
+## deepmind {.palette-show .palette-deepmind}
+
+::: {.palette-desc}
+Google DeepMind brand kit — deep navy, light blue, and primary blue.
+:::
+
+::: {.palette-identities}
+::: {.palette-chip .chip-apples}
+::: {.palette-chip-label}
+apples
+:::
+:::
+::: {.palette-chip .chip-oranges}
+::: {.palette-chip-label}
+oranges
+:::
+:::
+::: {.palette-chip .chip-bananas}
+::: {.palette-chip-label}
+bananas
+:::
+:::
+:::
+
+::: {.palette-pairing}
+::: {.palette-pair-a}
+apples on oranges
+:::
+::: {.palette-pair-o}
+oranges on apples
+:::
+:::
+
+::: {.palette-base}
+::: {.palette-base-chip .base-fg}
+foreground
+:::
+::: {.palette-base-chip .base-bg}
+background
+:::
+::: {.palette-base-chip .base-muted}
+muted
+:::
+:::

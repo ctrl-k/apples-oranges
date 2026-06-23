@@ -1,0 +1,71 @@
+# Named color schemes for apples-oranges decks.
+#
+# Each scheme defines base tokens (foreground, background, muted), paired
+# identities (apples, oranges), and bananas — a neutral tone (usually = muted).
+#
+# Pick a scheme in the theme list (before apples-oranges.scss):
+#
+#   theme:
+#     - default
+#     - schemes/select-nord.scss
+#     - apples-oranges.scss
+#
+schemes:
+  default:
+    description: Warm paper base with crimson / amber identities and muted neutral
+    apples: "#9b2335"
+    oranges: "#e07b24"
+    bananas: "#8A8580"
+  nord:
+    description: Snow-storm base with polar night / frost light identities and muted neutral
+    apples: "#2E3440"
+    oranges: "#88C0D0"
+    bananas: "#4C566A"
+  solarized:
+    description: Solarized light base with base03 dark / orange identities and muted neutral
+    apples: "#002B36"
+    oranges: "#CB4B16"
+    bananas: "#93A1A1"
+  dracula:
+    description: Dracula dark base with current line / foreground identities and comment neutral
+    apples: "#44475A"
+    oranges: "#F8F8F2"
+    bananas: "#6272A4"
+  gruvbox:
+    description: Gruvbox dark base with bg0 dark / orange identities and muted neutral
+    apples: "#1D2021"
+    oranges: "#FE8019"
+    bananas: "#928374"
+  catppuccin:
+    description: Catppuccin Mocha with blue / mauve identities and muted neutral
+    apples: "#89B4FA"
+    oranges: "#CBA6F7"
+    bananas: "#6C7086"
+  rose-pine:
+    description: Rosé Pine with foam / rose identities and muted neutral
+    apples: "#9CCFD8"
+    oranges: "#EBBCBA"
+    bananas: "#6E6A86"
+  grey:
+    description: Greyscale — near-black apples, near-white oranges, mid-grey neutral
+    apples: "#0A0A0A"
+    oranges: "#F7F7F7"
+    bananas: "#6E6E6E"
+  google:
+    description: Google News palette — blue / red identities on light tinted surfaces
+    apples: "#174EA6"
+    oranges: "#A50E0E"
+    bananas: "#9AA0A6"
+  deepmind:
+    description: Google DeepMind brand — deep navy / light blue identities and soft blue neutral
+    apples: "#1A2B4D"
+    oranges: "#BEDCFA"
+    bananas: "#6B8FC9"
+
+palette-slots:
+  - foreground
+  - background
+  - muted
+  - apples
+  - oranges
+  - bananas
