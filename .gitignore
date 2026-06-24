@@ -1,7 +1,11 @@
 # Quarto build output
+.quarto/
 /_output/
-/.quarto/
+**/*_files/
 **/*.quarto_ipynb
+
+# Rendered example output (regenerate with `quarto render`)
+/examples/*.html
 
 # OS
 .DS_Store

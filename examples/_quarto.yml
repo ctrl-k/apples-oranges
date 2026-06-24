@@ -1,0 +1,6 @@
+# Minimal project file for the examples folder.
+# Each .qmd below carries its own `format:` block pointing at the theme
+# one directory up (../). In your real project, copy the two .scss files
+# next to your .qmd and drop the "../".
+project:
+  title: "Apples & Oranges — examples"

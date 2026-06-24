@@ -1,0 +1,596 @@
+/*-- scss:defaults --*/
+// =====================================================================
+//  Apples & Oranges — Quarto reveal.js theme
+//  A comparison-deck framework: two opposing sides (apple / orange)
+//  plus a neutral tone (banana). Same layout every time — palette flips.
+//
+//  Usage (slides .qmd front-matter):
+//    format:
+//      revealjs:
+//        theme: apples-oranges-revealjs.scss
+//        width: 1920
+//        height: 1080
+//        center: false
+//        slide-number: "c/t"
+//        code-line-numbers: false
+//        footer: "Apples & Oranges"
+//
+//  Default ground is the light "orange" paper tone. Per-slide tone:
+//  add {.apple} (dark), {.orange} (light) or {.banana} (neutral) to a
+//  slide heading and Quarto promotes the class onto the <section>.
+// =====================================================================
+
+// ---- Palette (source blues) ----------------------------------------
+$ao-ink:        #0F1D38 !default; // deepest navy — code cards
+$ao-navy:       #16284A !default; // apple ground / primary ink
+$ao-panel-dark: #20355C !default; // callout panel on dark
+$ao-accent:     #3B63B5 !default; // links, accents
+$ao-soft:       #6B8FC9 !default; // soft blue
+$ao-eyebrow:    #7FA6E0 !default; // eyebrow labels on dark
+$ao-text-dark:  #DCE9FB !default; // text on dark
+$ao-muted-dark: #9DB6DE !default; // muted text on dark
+$ao-paper:      #EDF3FC !default; // orange ground (light)
+$ao-panel-lt:   #DEE9F8 !default; // callout panel on light
+$ao-muted-lt:   #5E7BB0 !default; // muted text on light
+$ao-banana:     #C3C9D2 !default; // neutral ground (slate grey)
+$ao-banana-ink: #5E6671 !default; // muted labels on banana
+$ao-card:       #FEFFFE !default; // card surface
+
+// code-card token colours
+$ao-code-comment: #6B8FC9 !default;
+$ao-code-string:  #9FC2F2 !default;
+$ao-code-op:      #5E7BB0 !default;
+
+// ---- Typography -----------------------------------------------------
+$ao-font-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif !default;
+$ao-font-mono: "Space Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
+
+// ---- reveal.js / Quarto presentation variables ----------------------
+$body-bg:       $ao-paper !default;
+$body-color:    $ao-navy !default;
+$link-color:    $ao-accent !default;
+$link-color-hover: $ao-soft !default;
+$selection-bg:  $ao-accent;
+$selection-color: #fff;
+
+$presentation-font-size-root:    32px !default;
+$presentation-font-family:       #{$ao-font-sans} !default;
+$presentation-line-height:       1.5 !default;
+$presentation-heading-font:      #{$ao-font-sans} !default;
+$presentation-heading-color:     $ao-navy !default;
+$presentation-heading-font-weight: 600 !default;
+$presentation-heading-line-height: 0.98 !default;
+$presentation-h1-font-size:      3.0em !default;
+$presentation-h2-font-size:      3.0em !default;
+$presentation-h3-font-size:      1.5em !default;
+
+$code-block-bg:          $ao-ink !default;
+$code-block-font-size:   0.875em !default;   // 28px
+
+/*-- scss:rules --*/
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+// Expose tokens as CSS custom properties so per-slide schemes can swap
+// a single value and let everything inside react.
+:root {
+  --ao-ink: #{$ao-ink};
+  --ao-navy: #{$ao-navy};
+  --ao-panel-dark: #{$ao-panel-dark};
+  --ao-accent: #{$ao-accent};
+  --ao-soft: #{$ao-soft};
+  --ao-eyebrow: #{$ao-eyebrow};
+  --ao-text-dark: #{$ao-text-dark};
+  --ao-muted-dark: #{$ao-muted-dark};
+  --ao-paper: #{$ao-paper};
+  --ao-panel-lt: #{$ao-panel-lt};
+  --ao-muted-lt: #{$ao-muted-lt};
+  --ao-banana: #{$ao-banana};
+  --ao-card: #{$ao-card};
+  // per-scheme context (defaults = orange/paper)
+  --ao-ground: #{$ao-paper};
+  --ao-fg: #{$ao-navy};
+  --ao-line: rgba(22, 40, 74, .16);
+  --ao-panel: #{$ao-panel-lt};
+  --ao-muted: #{$ao-muted-lt};
+  --ao-kicker: #{$ao-accent};
+  --ao-index: #{$ao-accent};
+}
+
+.reveal {
+  // Force reveal's core font variables — otherwise body text falls back
+  // to the bundled "Source Sans Pro" theme font instead of Space Grotesk.
+  --r-main-font: #{$ao-font-sans};
+  --r-heading-font: #{$ao-font-sans};
+  --r-code-font: #{$ao-font-mono};
+  font-family: #{$ao-font-sans};
+  font-weight: 400;
+  letter-spacing: 0;
+
+  // ---- Slide shell -------------------------------------------------
+  // reveal.js sets `display:block` inline on the active <section>; we force
+  // the present content slide to flex so the eyebrow can ride ABOVE the
+  // title via `order`. The title slide stays block (absolute children).
+  .slides section {
+    text-align: left;
+    padding: 80px 110px;
+    height: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .slides section.present:not(#title-slide) { display: flex !important; }
+
+  // Eyebrow rides ABOVE the title; the heading sits just under it.
+  .slides section > .eyebrow { order: -2; }
+  .slides section > h1,
+  .slides section > h2,
+  .slides section > h3 { order: -1; }
+
+  h1, h2, h3 {
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0 0 0.1em;
+  }
+  // title sits ~96px below the eyebrow; ~110px above the body
+  .slides section > h2 { margin: 0.55em 0 0.75em; }
+
+  // ---- Eyebrow: wide-tracked mono caps (24px / 0.42em) --------------
+  .eyebrow {
+    font-family: #{$ao-font-mono};
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-size: 0.75em;
+    font-weight: 400;
+    color: var(--ao-kicker);
+    display: block;
+    margin: 0 0 0.85em;
+  }
+
+  // ---- Two-column body: points | aside ------------------------------
+  // Exact design columns (authored 1920 space): points 891 · gap 136 ·
+  // stack 633 — points column matches the title width (x 110 → 1001).
+  .split {
+    order: 0;
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 891px 633px;
+    column-gap: 136px;
+    justify-content: start;
+    align-items: stretch;     // both columns full body height
+    margin-top: 0;
+  }
+  .split > * { min-width: 0; box-sizing: border-box; }
+  // points sit at the top; the stack is centred in the body so the
+  // callout / code land at a consistent height on every slide
+  .split > .points { align-self: start; }
+  .stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.4em;
+  }
+
+  // ---- Numbered points list (.points) -------------------------------
+  .points { order: 0; }
+  .points ul, .points ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid var(--ao-line);
+    counter-reset: ao;
+  }
+  .points li { box-sizing: border-box; }
+  .points li {
+    counter-increment: ao;
+    padding: 0.95em 0;
+    border-bottom: 1px solid var(--ao-line);
+    position: relative;
+    padding-left: 1.85em;
+  }
+  // index "01" — 24px / soft blue, baseline-aligned with the lead's
+  // first line (sits ~12px below the lead top, like the reference)
+  .points li::before {
+    content: counter(ao, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 1.9em;
+    font-family: #{$ao-font-mono};
+    font-size: 0.75em;
+    line-height: 1;
+    color: var(--ao-index);
+  }
+  .points li br { display: none; }
+  // lead — 40px / 500
+  .points li .lead,
+  .points li strong:first-child {
+    display: block;
+    font-weight: 500;
+    font-size: 1.25em;
+    line-height: 1.1;
+  }
+  // desc — 25px / 400 / muted
+  .points li .desc {
+    display: block;
+    font-size: 0.78em;
+    font-weight: 400;
+    color: var(--ao-muted);
+    margin-top: 0.45em;
+    line-height: 1.4;
+  }
+  // leads-only variant breathes a little more (keep the index gutter)
+  .points.lg li { padding: 1.2em 0 1.2em 1.85em; }
+
+  // ---- Code: dark "card" --------------------------------------------
+  div.sourceCode {
+    margin: 0;
+    background: transparent;
+    border: none !important;
+    overflow: visible !important;
+    width: 100%;
+    max-width: 100%;
+  }
+  pre {
+    background: var(--ao-ink);
+    border: none !important;
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 28px 22px;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+  pre code {
+    background: transparent;
+    color: var(--ao-text-dark);
+    font-family: #{$ao-font-mono} !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    white-space: pre-wrap !important;
+    word-break: break-word;
+    overflow: visible !important;
+    max-width: 100%;
+  }
+  pre code.sourceCode { line-height: 1.7; }
+  code, pre code span { font-family: #{$ao-font-mono} !important; }
+  :not(pre) > code { color: var(--ao-accent); background: transparent; }
+
+  // brand-tinted syntax tokens — everything light, only comments /
+  // strings / numbers / operators carry colour (pandoc highlight classes)
+  pre code span { color: var(--ao-text-dark) !important; }
+  pre code .co, pre code .cn { color: #{$ao-code-comment} !important; font-style: normal; }
+  pre code .st, pre code .ss, pre code .vs,
+  pre code .dv, pre code .fl, pre code .bn { color: #{$ao-code-string} !important; }
+  pre code .op, pre code .sc { color: #{$ao-code-op} !important; }
+
+  // ---- Callouts: flat panels (no left-border tropes) ----------------
+  .callout {
+    border: none !important;
+    border-left: none !important;
+    border-radius: 5px;
+    margin: 0;
+    background: var(--ao-panel) !important;
+    box-shadow: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .callout > div,
+  .callout .callout-header,
+  .callout .callout-title-container { border: none !important; background: transparent !important; }
+  .callout .callout-header {
+    padding: 0;
+    display: block;
+  }
+  // callout title "NOTE" — Space Mono 24px / 400 / 0.32em
+  .callout .callout-title,
+  .callout .callout-title-container {
+    background: transparent !important;
+    border: none !important;
+    font-family: #{$ao-font-mono} !important;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-size: 24px !important;
+    font-weight: 400 !important;
+    color: var(--ao-kicker);
+    margin: 0;
+  }
+  .callout .callout-title { padding: 36px 44px 0; }
+  .callout .callout-title,
+  .callout .callout-title p,
+  .callout .callout-title * { color: var(--ao-kicker) !important; font-weight: 400 !important; }
+  .callout .callout-title p { margin: 0; }
+  .callout .callout-icon,
+  .callout .callout-icon-container { display: none !important; }
+  // callout body — Space Grotesk 28px / 400
+  .callout .callout-body-container,
+  .callout .callout-body {
+    padding: 16px 44px 36px;
+    font-size: 28px !important;
+    line-height: 1.5;
+    color: var(--ao-muted);
+    background: transparent;
+  }
+  .callout .callout-body-container p { font-size: 28px; }
+  .callout .callout-body-container p:last-child { margin-bottom: 0; }
+
+  // ---- Mirror comparison (full-bleed, two halves) -------------------
+  .slides section.compare { padding: 0; }
+  .slides section.compare > h1,
+  .slides section.compare > h2,
+  .slides section.compare > h3 { display: none; }
+  .versus {
+    order: 0;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+  }
+  .versus .side {
+    padding: 88px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;   // top-aligned, not centred
+  }
+  .versus .side.apple {
+    background: var(--ao-navy);
+    color: var(--ao-text-dark);
+    --ao-kicker: var(--ao-eyebrow);
+    --ao-muted: var(--ao-muted-dark);
+  }
+  .versus .side.orange {
+    background: var(--ao-paper);
+    color: var(--ao-navy);
+    text-align: right;
+    --ao-kicker: var(--ao-accent);
+    --ao-muted: var(--ao-muted-lt);
+  }
+  // reveal forces list text-align:left — override so the orange (right)
+  // side is genuinely right-justified, lines sharing the right edge.
+  .versus .side.orange,
+  .versus .side.orange ul,
+  .versus .side.orange li,
+  .versus .side.orange .sub,
+  .versus .side.orange .eyebrow,
+  .versus .side.orange p { text-align: right !important; }
+  .versus .side.apple,
+  .versus .side.apple ul,
+  .versus .side.apple li { text-align: left !important; }
+  .versus .side > .eyebrow { margin-bottom: 1.9em; }
+  // subhead "STRENGTHS" / "TRADE-OFFS" — 24px / 0.3em
+  .versus .sub {
+    font-family: #{$ao-font-mono};
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.75em;
+    color: var(--ao-kicker);
+    display: block;
+    margin: 1.6em 0 0.6em;
+  }
+  .versus .sub:first-of-type { margin-top: 0; }
+  .versus ul {
+    list-style: none;
+    margin: 0 0 0.2em;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  // list items — 46px / 500
+  .versus ul li {
+    font-size: 1.4375em;
+    font-weight: 500;
+    line-height: 1.32;
+  }
+  .versus .trade ul li { font-weight: 400; color: var(--ao-muted); }
+
+  // ---- Scheme swatch trio (banana right column) ---------------------
+  .swatches,
+  .swatches > p {
+    display: flex;
+    gap: 0.6em;
+    margin: 0;
+  }
+  .swatches .swatch {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    min-height: 2.6em;
+    padding: 0.7em 0.8em;
+    border-radius: 5px;
+    font-family: #{$ao-font-mono};
+    font-size: 0.75em;
+    letter-spacing: 0.04em;
+  }
+  .swatches .swatch.apple  { background: var(--ao-navy); color: var(--ao-text-dark); }
+  .swatches .swatch.orange { background: var(--ao-paper); color: var(--ao-accent); border: 1px solid #C6D6EE; }
+  .swatches .swatch.banana { background: #AEB5C1; color: var(--ao-navy); border: 1px solid #98A0AE; }
+
+  // ---- Running footer eyebrow (bottom-left) -------------------------
+  .footer.footer-default,
+  .footer {
+    font-family: #{$ao-font-mono};
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    font-size: 0.75em;
+    color: var(--ao-muted);
+    opacity: 0.6;
+    text-align: left !important;
+    left: 5.7% !important;
+    right: auto !important;
+    bottom: 6% !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  // ---- Slide counter: top-right, mono (24px / 0.3em) ----------------
+  .slide-number,
+  &.has-logo .slide-number {
+    font-family: #{$ao-font-mono} !important;
+    letter-spacing: 0.3em;
+    font-size: 24px !important;
+    right: 5.7% !important;
+    top: 7% !important;
+    bottom: auto !important;
+    background: transparent !important;
+    color: var(--ao-muted);
+    opacity: 0.85;
+  }
+  .slide-number a, .slide-number .slide-number-a,
+  .slide-number .slide-number-delimiter,
+  .slide-number .slide-number-b { color: var(--ao-muted); }
+  .progress { color: var(--ao-accent); }
+}
+
+// hide footer + slide counter on the title slide and full-bleed compare slide
+.reveal:has(section#title-slide.present) .footer,
+.reveal:has(section#title-slide.present) .slide-number,
+.reveal:has(section.compare.present) .footer,
+.reveal:has(section.compare.present) .slide-number { display: none !important; }
+
+// =====================================================================
+//  PER-SLIDE SCHEMES — add {.apple} / {.orange} / {.banana} to heading
+// =====================================================================
+.reveal .slides section.apple {
+  background: var(--ao-navy);
+  color: var(--ao-text-dark);
+  --ao-line: rgba(127, 166, 224, .26);
+  --ao-panel: var(--ao-panel-dark);
+  --ao-muted: var(--ao-muted-dark);
+  --ao-kicker: var(--ao-eyebrow);
+  --ao-index: var(--ao-soft);
+  h1, h2, h3 { color: #fff; }
+  a { color: var(--ao-soft); }
+}
+
+.reveal .slides section.orange {
+  background: var(--ao-paper);
+  color: var(--ao-navy);
+  --ao-line: rgba(22, 40, 74, .16);
+  --ao-panel: var(--ao-panel-lt);
+  --ao-muted: var(--ao-muted-lt);
+  --ao-kicker: var(--ao-accent);
+  --ao-index: var(--ao-accent);
+  h1, h2, h3 { color: var(--ao-navy); }
+}
+
+.reveal .slides section.banana {
+  background: var(--ao-banana);
+  color: var(--ao-navy);
+  --ao-line: rgba(22, 40, 74, .18);
+  --ao-panel: var(--ao-card);
+  --ao-muted: var(--ao-banana-ink);
+  --ao-kicker: var(--ao-banana-ink);
+  --ao-index: var(--ao-soft);
+  h1, h2, h3 { color: var(--ao-navy); }
+  // code card stays dark on banana
+  pre { background: var(--ao-ink); }
+}
+
+// =====================================================================
+//  TITLE SLIDE — top / bottom colour split (always on #title-slide)
+// =====================================================================
+.reveal .slides section#title-slide,
+.reveal #title-slide {
+  padding: 0;
+  display: block;
+  background: linear-gradient(
+    to bottom,
+    #{$ao-navy} 0%, #{$ao-navy} 50%,
+    #{$ao-paper} 50%, #{$ao-paper} 100%
+  );
+
+  &::before {
+    content: attr(data-eyebrow);
+    position: absolute;
+    left: 5.7%;
+    top: 7%;
+    font-family: #{$ao-font-mono};
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-size: 0.75em;
+    color: $ao-muted-lt;
+  }
+
+  // title — 132px / 600, left-aligned, lower navy half
+  .title {
+    color: var(--ao-text-dark);
+    font-size: 4.125em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 0.98;
+    margin: 0;
+    padding: 0 5.7%;
+    text-align: left;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 54%;
+  }
+  .title .vs, .title em { color: var(--ao-soft); font-style: normal; }
+
+  // subtitle — 48px / 500, upper paper half
+  .subtitle {
+    color: var(--ao-accent);
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 0;
+    padding: 0 5.7%;
+    text-align: left;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 54%;
+  }
+
+  .quarto-title-authors {
+    position: absolute;
+    left: 5.7%;
+    bottom: 7%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: block;
+    justify-content: flex-start;
+    text-align: left;
+    width: auto;
+  }
+  // author — 24px / 0.42em, bottom-left (absolute px: avoids the size
+  // compounding through nested .quarto-title-author* wrappers)
+  .quarto-title-authors,
+  .quarto-title-authors .quarto-title-author,
+  .author, .quarto-title-author-name {
+    font-family: #{$ao-font-mono};
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-size: 24px;
+    color: $ao-muted-lt;
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  // date — 24px / 0.42em, top-right
+  .date {
+    position: absolute;
+    right: 5.7%;
+    top: 7%;
+    left: auto;
+    bottom: auto;
+    font-family: #{$ao-font-mono};
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-size: 0.75em;
+    color: $ao-muted-lt;
+    margin: 0;
+  }
+}

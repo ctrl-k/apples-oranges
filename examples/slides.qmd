@@ -1,0 +1,156 @@
+---
+title: "Apples [vs.]{.vs} Oranges"
+subtitle: "A comparison deck template"
+author: "Your Name"
+date: "2026-06-01"
+date-format: "MMMM YYYY"
+title-slide-attributes:
+  data-eyebrow: "Comparison Deck"
+format:
+  revealjs:
+    theme: ../apples-oranges-revealjs.scss
+    width: 1920
+    height: 1080
+    margin: 0
+    center: false
+    slide-number: "c/t"
+    code-line-numbers: false
+    footer: "Apples & Oranges"
+---
+
+## Why compare? {.apple}
+
+::: {.eyebrow}
+Apples
+:::
+
+:::::: {.split}
+::: {.points}
+- [Two options, one decision]{.lead}<br>[Frame the choice up front so every slide ladders back to it.]{.desc}
+- [Each side gets its own visual voice]{.lead}<br>[A dedicated palette per option keeps the two from blurring together.]{.desc}
+- [Contrast keeps the audience oriented]{.lead}<br>[People always know which side they're looking at.]{.desc}
+:::
+
+:::: {.stack}
+::: {.callout-note title="Note"}
+Apple slides use pale text on a solid navy ground. Callouts sit on a desaturated navy-tint panel.
+:::
+
+```python
+# choose a variety
+variety = "honeycrisp"
+```
+::::
+::::::
+
+## Why compare? {.orange}
+
+::: {.eyebrow}
+Oranges
+:::
+
+:::::: {.split}
+::: {.points}
+- [Mirror structure, inverted palette]{.lead}<br>[Navy text on a pale ground sets the second option apart instantly.]{.desc}
+- [Same layout, different emphasis]{.lead}<br>[The grid matches the apples side, so the audience compares like for like.]{.desc}
+- [Easy to scan which side you're on]{.lead}<br>[The palette flip alone signals which option is on screen.]{.desc}
+:::
+
+:::: {.stack}
+::: {.callout-note title="Tip"}
+Orange slides invert the palette — navy text on a pale ground. Callouts use a desaturated pale panel.
+:::
+
+```python
+# choose a variety
+variety = "cara_cara"
+```
+::::
+::::::
+
+## Strengths & trade-offs {.compare}
+
+::::: {.versus}
+:::: {.side .apple}
+[Apples]{.eyebrow}
+
+[Strengths]{.sub}
+
+- Crisp texture
+- Long shelf life
+- Great for baking
+
+[Trade-offs]{.sub}
+
+::: {.trade}
+- Less juice per bite
+- Fewer varieties in season
+:::
+::::
+
+:::: {.side .orange}
+[Oranges]{.eyebrow}
+
+[Strengths]{.sub}
+
+- High vitamin C
+- Segment-friendly
+- Bright, fresh flavor
+
+[Trade-offs]{.sub}
+
+::: {.trade}
+- Peel can be messy
+- Shorter peak freshness
+:::
+::::
+:::::
+
+## Neutral ground {.banana}
+
+::: {.eyebrow}
+Neutral
+:::
+
+:::::: {.split}
+::: {.points .lg}
+- [Use it for content that takes no side]{.lead}
+- [Readable body on a soft, desaturated ground]{.lead}
+- [Good for summaries, agenda, or context]{.lead}
+:::
+
+:::: {.stack}
+::: {.swatches}
+[apples]{.swatch .apple} [oranges]{.swatch .orange} [banana]{.swatch .banana}
+:::
+
+::: {.callout-note title="Note"}
+Neutral slides sit outside the apples / oranges pairing — use them to set up or wrap up the comparison.
+:::
+::::
+::::::
+
+## Summary {.apple}
+
+::: {.eyebrow}
+Apples
+:::
+
+:::::: {.split}
+::: {.points .lg}
+- [Apples and Oranges pair across the two sides]{.lead}
+- [Banana is the neutral, side-less tone]{.lead}
+- [Same layout every time — only the palette flips]{.lead}
+:::
+
+:::: {.stack}
+::: {.callout-note title="Use it for"}
+Any two-option decision — products, plans, vendors, directions — where contrast helps the room choose.
+:::
+
+```python
+# three tones
+scheme = [apples, oranges, banana]
+```
+::::
+::::::

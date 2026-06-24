@@ -1,0 +1,44 @@
+---
+title: "Apples vs. Oranges"
+subtitle: "A comparison framework"
+author: "Your Name"
+date: "June 2026"
+format:
+  html:
+    theme: ../apples-oranges.scss
+    toc: true
+    code-block-bg: true
+---
+
+[Design System]{.eyebrow}
+
+## Why compare?
+
+Two options, one decision. Each side gets its own visual voice, and the
+contrast keeps a reader oriented — the same layout every time, only the
+palette flips.
+
+::: {.callout-note title="Note"}
+The apple tone uses pale text on a solid navy ground; callouts sit on a
+desaturated navy-tint panel.
+:::
+
+## Strengths & trade-offs
+
+| Metric      | Apples              | Oranges              |
+|-------------|---------------------|----------------------|
+| Strength    | Crisp texture       | High vitamin C       |
+| Strength    | Long shelf life     | Segment-friendly     |
+| Trade-off   | Less juice per bite | Peel can be messy    |
+
+## Neutral ground
+
+::: {.scheme-banana}
+Neutral blocks sit outside the apples / oranges pairing — good for
+summaries, agenda, or shared context.
+:::
+
+```python
+# three tones
+scheme = ["apples", "oranges", "banana"]
+```

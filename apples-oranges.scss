@@ -1,881 +1,157 @@
 /*-- scss:defaults --*/
+// =====================================================================
+//  Apples & Oranges — Quarto HTML document theme
+//  Same tokens & type system as the reveal.js deck, tuned for long-form
+//  reading. Built on Bootstrap (Quarto's default HTML engine).
+//
+//  Usage (in _quarto.yml or a document's front-matter):
+//    format:
+//      html:
+//        theme: apples-oranges.scss
+//        highlight-style: schemes-dark.theme   # optional, see README
+// =====================================================================
 
-@import "color-schemes";
+// ---- Palette (source blues) ----------------------------------------
+$ao-ink:        #0F1D38 !default;
+$ao-navy:       #16284A !default;
+$ao-panel-dark: #20355C !default;
+$ao-accent:     #3B63B5 !default;
+$ao-soft:       #6B8FC9 !default;
+$ao-eyebrow:    #7FA6E0 !default;
+$ao-text-dark:  #DCE9FB !default;
+$ao-paper:      #EDF3FC !default;
+$ao-panel-lt:   #DEE9F8 !default;
+$ao-muted-lt:   #5E7BB0 !default;
+$ao-banana:     #C3C9D2 !default;
+$ao-card:       #FEFFFE !default;
+$ao-line:       #DCE5F2 !default;
 
-// Identity + theme tokens — from imported palette (schemes/select-<name>.scss sets $scheme)
+// ---- Fonts ----------------------------------------------------------
+$font-family-sans-serif: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif !default;
+$font-family-monospace:  "Space Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
 
-$apple-d-fill: mix($apple-d, $apple, 35%);
-$orange-d-fill: mix($orange-d, $orange, 35%);
+// ---- Bootstrap / Quarto base ---------------------------------------
+$body-bg:    #F7F9FC !default;
+$body-color: $ao-navy !default;
 
-// Light desaturated ground-tinted callout panels
-@function callout-title-bg($ground) {
-  @return hsl(hue($ground), 32%, 78%);
-}
+$primary:    $ao-accent !default;
+$secondary:  $ao-soft !default;
 
-@function callout-body-bg($ground) {
-  @return hsl(hue($ground), 24%, 86%);
-}
+$link-color:           $ao-accent !default;
+$link-hover-color:     $ao-navy !default;
+$link-decoration:      none !default;
 
-@function code-panel-bg($ground) {
-  @return hsl(hue($ground), 22%, 90%);
-}
+$headings-font-weight: 600 !default;
+$headings-color:       $ao-navy !default;
+$headings-line-height: 1.1 !default;
 
-// Typography
-$font-family-sans-serif: "DM Sans", system-ui, sans-serif;
-$font-family-monospace: "IBM Plex Mono", ui-monospace, monospace;
-$presentation-heading-font: $font-family-sans-serif;
-$presentation-font-size-root: 38px;
+$border-color:         $ao-line !default;
+$border-radius:        4px !default;
 
-$presentation-h1-font-size: 2.4em;
-$presentation-h2-font-size: 1.55em;
-$presentation-h3-font-size: 1.1em;
+// Inline + block code
+$code-color:           $ao-accent !default;
+$code-bg:              #EEF3FB !default;
+$code-block-bg:        $ao-ink !default;        // dark code card
+$code-block-border-left: none !default;
+
+// Callouts (Quarto) — map to the brand blues
+$callout-color-note:      $ao-accent !default;
+$callout-color-tip:       $ao-soft !default;
+$callout-color-important: $ao-navy !default;
+$callout-color-caution:   $ao-muted-lt !default;
+$callout-color-warning:   $ao-panel-dark !default;
 
 /*-- scss:rules --*/
-
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-  --ao-apple: #{$apple};
-  --ao-orange: #{$orange};
-  --ao-bananas: #{$bananas};
-  --ao-foreground: #{$foreground};
-  --ao-background: #{$background};
-  --ao-muted: #{$muted};
-  --ao-title-h1: #{$orange};
-  --ao-title-meta: #{$apple};
-  --title-side-pad: #{$presentation-font-size-root * 1.4};
+  --ao-ink: #{$ao-ink};
+  --ao-navy: #{$ao-navy};
+  --ao-accent: #{$ao-accent};
+  --ao-soft: #{$ao-soft};
+  --ao-paper: #{$ao-paper};
+  --ao-banana: #{$ao-banana};
 }
 
-@if $scheme == "google" {
-  :root {
-    --ao-title-h1: #ffffff;
-    --ao-title-meta: #ffffff;
-  }
-}
+body { letter-spacing: 0; text-rendering: optimizeLegibility; }
 
-$google-blue-medium: #4285f4;
-$google-red-surface: #fad2cf;
-$google-blue-surface: #d2e3fc;
+h1, h2, h3, h4 { letter-spacing: -0.02em; text-wrap: balance; }
+h1 { font-size: 2.6rem; }
+h2 { font-size: 1.7rem; margin-top: 2.2rem; }
 
-// ---------------------------------------------------------------------------
-// Shared mixins
-// ---------------------------------------------------------------------------
-
-@mixin eyebrow($color) {
-  display: block;
-  font-family: $font-family-monospace;
-  font-size: 0.42em;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+// Section eyebrow: wide-tracked mono caps
+.eyebrow {
+  font-family: #{$font-family-monospace};
   text-transform: uppercase;
-  color: $color;
-  margin-bottom: 0.35em;
+  letter-spacing: 0.36em;
+  font-size: 0.8rem;
+  color: $ao-accent;
+  display: block;
+  margin-bottom: 0.6rem;
 }
 
-@mixin slide-surface($class) {
-  .reveal .slide-background#{$class} .slide-background-content {
-    @content;
-  }
+// Title block
+.quarto-title .title { letter-spacing: -0.03em; }
+.quarto-title-banner { background: $ao-navy; color: $ao-text-dark; }
+.quarto-title-banner .title, .quarto-title-banner .subtitle { color: $ao-text-dark; }
+
+// Links: subtle underline on hover only
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+// Code: dark "card" look, mono everywhere, brand-tinted tokens
+code { font-family: #{$font-family-monospace}; }
+div.sourceCode, pre.sourceCode {
+  background: $ao-ink !important;
+  border: none !important; border-radius: $border-radius;
+  padding: 0.4rem 0.2rem;
+}
+pre.sourceCode code { color: $ao-text-dark; }
+// everything light by default, only comments / strings / numbers / ops tint
+pre.sourceCode code span { color: $ao-text-dark !important; }
+pre.sourceCode .co, pre.sourceCode .cn { color: #6B8FC9 !important; font-style: normal; }
+pre.sourceCode .st, pre.sourceCode .ss, pre.sourceCode .vs,
+pre.sourceCode .dv, pre.sourceCode .fl, pre.sourceCode .bn { color: #9FC2F2 !important; }
+pre.sourceCode .op, pre.sourceCode .sc { color: $ao-muted-lt !important; }
+:not(pre) > code { background: $code-bg; color: $ao-accent; padding: 0.15em 0.4em; border-radius: 3px; }
+
+// Blockquote: hairline rule, no heavy bar
+blockquote {
+  border-left: 2px solid $ao-accent;
+  color: $ao-muted-lt;
+  padding-left: 1.2rem;
 }
 
-@mixin bananas-readable($shadow-base) {
-  color: $bananas !important;
-
-  @if lightness($bananas) > 58% {
-    text-shadow:
-      0 1px 0 rgba(mix($shadow-base, #000, 75%), 0.35),
-      0 1px 3px rgba(mix($shadow-base, #000, 55%), 0.2);
-  }
+// Tables: hairline, mono headers
+table { border-collapse: collapse; }
+thead th {
+  font-family: #{$font-family-monospace};
+  text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: 0.8em; color: $ao-navy;
+  border-bottom: 1.5px solid $ao-navy !important;
 }
+tbody td { border-bottom: 1px solid $ao-line; }
 
-@function on-ground($ground) {
-  @return if(lightness($ground) > 52%, mix($foreground, #000, 92%), #f8f8f8);
+// Callouts: flat brand panels (no left-border trope, mono eyebrow title)
+.callout {
+  border-radius: $border-radius;
+  border: none !important;
+  border-left: none !important;
+  background: $ao-panel-lt;
 }
-
-@mixin bananas-slide-content($ground, $ground-d, $label) {
-  $text: on-ground($ground);
-  $text-d: mix($text, $ground, 38%);
-  $callout-title-bg: callout-title-bg($ground);
-  $callout-body-bg: callout-body-bg($ground);
-
-  color: $text;
-
-  h2,
-  h3,
-  h4,
-  p,
-  li,
-  strong,
-  em,
-  td,
-  th {
-    color: $text;
-  }
-
-  h2::before {
-    content: $label;
-    @include eyebrow($text-d);
-  }
-
-  a {
-    color: $text;
-    text-decoration-color: $ground-d;
-    font-weight: 500;
-  }
-
-  a:hover {
-    color: mix($ground, $text, 28%);
-  }
-
-  blockquote {
-    border-left: 3px solid mix($ground-d, $ground, 55%);
-    background: $callout-body-bg;
-    color: $text;
-    border-radius: 0 8px 8px 0;
-  }
-
-  code {
-    color: $text;
-    background: mix($text, $ground, 10%);
-    border-radius: 4px;
-    padding: 0.05em 0.25em;
-  }
-
-  .code-copy-outer-scaffold,
-  div.sourceCode {
-    margin-bottom: 2em;
-  }
-
-  div.sourceCode {
-    background-color: code-panel-bg($ground) !important;
-    border: 1px solid mix($ground, $text, 32%);
-    border-radius: 8px;
-    box-shadow: none;
-  }
-
-  div.sourceCode pre,
-  pre.sourceCode {
-    background: transparent !important;
-    border: none;
-    box-shadow: none;
-  }
-
-  div.sourceCode code,
-  pre.sourceCode code {
-    color: $text;
-    background: transparent;
-  }
-
-  div.callout {
-    background: transparent;
-    border: none !important;
-    border-left: 3px solid mix($ground-d, $ground, 65%) !important;
-    border-radius: 0 8px 8px 0;
-    color: $text;
-    overflow: hidden;
-    margin: 0.75em 0;
-    box-shadow: 0 2px 10px rgba(mix($ground, #000, 55%), 0.12);
-
-    .callout-body {
-      background: transparent;
-      padding: 0;
-    }
-
-    &.callout-style-default {
-      .callout-title {
-        opacity: 1 !important;
-        background-color: $callout-title-bg !important;
-        padding: 0.55em 0.7em;
-        margin: 0;
-        border-bottom: 1px solid mix($ground-d, $ground, 35%);
-        font-weight: 600;
-        color: $text;
-      }
-
-      .callout-content {
-        background-color: $callout-body-bg !important;
-        padding: 0.7em;
-        margin: 0;
-        color: $text;
-      }
-    }
-
-    .callout-title,
-    .callout-body,
-    .callout-content,
-    p,
-    li,
-    strong {
-      color: $text;
-    }
-
-    code {
-      color: $text;
-      background: mix($callout-title-bg, $ground, 55%);
-    }
-  }
-
-  .footer-label {
-    color: $text-d;
-  }
+.callout .callout-icon, .callout .callout-icon-container { display: none !important; }
+.callout.callout-style-default > div.callout-header,
+.callout.callout-style-default .callout-title {
+  background: transparent !important;
+  border: none !important;
+  font-family: #{$font-family-monospace};
+  text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8em;
+  color: $ao-accent;
 }
-
-// Strict pairing: identity text on saturated opposite ground; desaturated ground-tinted callouts
-@mixin paired-slide-content($identity, $identity-d, $label, $ground) {
-  $callout-title-bg: callout-title-bg($ground);
-  $callout-body-bg: callout-body-bg($ground);
-
-  color: $identity;
-
-  h2,
-  h3,
-  h4,
-  p,
-  li,
-  strong,
-  em,
-  td,
-  th {
-    color: $identity;
-  }
-
-  h2::before {
-    content: $label;
-    @include eyebrow($identity-d);
-  }
-
-  a {
-    color: $identity;
-    text-decoration-color: $identity-d;
-  }
-
-  a:hover {
-    color: mix(#fff, $identity, 18%);
-  }
-
-  blockquote {
-    border-left: 3px solid mix($bananas, $identity, 35%);
-    background: $callout-body-bg;
-    color: $identity;
-    border-radius: 0 8px 8px 0;
-  }
-
-  code {
-    color: $identity;
-    background: mix($identity, $ground, 12%);
-    border-radius: 4px;
-    padding: 0.05em 0.25em;
-  }
-
-  .code-copy-outer-scaffold,
-  div.sourceCode {
-    margin-bottom: 2em;
-  }
-
-  div.sourceCode {
-    background-color: code-panel-bg($ground) !important;
-    border: 1px solid mix($ground, #fff, 38%);
-    border-radius: 8px;
-    box-shadow: none;
-  }
-
-  div.sourceCode pre,
-  pre.sourceCode {
-    background: transparent !important;
-    border: none;
-    box-shadow: none;
-  }
-
-  div.sourceCode code,
-  pre.sourceCode code {
-    color: $foreground;
-    background: transparent;
-  }
-
-  div.callout {
-    background: transparent;
-    border: none !important;
-    border-left: 3px solid mix($bananas, $ground, 55%) !important;
-    border-radius: 0 8px 8px 0;
-    color: $bananas;
-    overflow: hidden;
-    margin: 0.75em 0;
-    box-shadow: 0 2px 10px rgba(mix($ground, #000, 55%), 0.12);
-
-    .callout-body {
-      background: transparent;
-      padding: 0;
-    }
-
-    &.callout-style-default {
-      .callout-title {
-        opacity: 1 !important;
-        background-color: $callout-title-bg !important;
-        padding: 0.55em 0.7em;
-        margin: 0;
-        border-bottom: 1px solid mix($bananas, $ground, 28%);
-        font-weight: 600;
-      }
-
-      .callout-content {
-        background-color: $callout-body-bg !important;
-        padding: 0.7em;
-        margin: 0;
-      }
-    }
-
-    .callout-title,
-    .callout-body,
-    .callout-content,
-    p,
-    li,
-    strong {
-      @include bananas-readable($ground);
-    }
-
-    code {
-      @include bananas-readable($ground);
-      background: mix($callout-title-bg, #000, 82%);
-    }
-  }
-
-  .footer-label {
-    color: $identity-d;
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Title slide — top apple / bottom orange
-// ---------------------------------------------------------------------------
-
-.reveal .slides section.title-split,
-.reveal .slides #title-slide.title-split {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  transform: none !important;
-  text-align: left;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  align-items: stretch !important;
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 100% !important;
-  padding: 0 !important;
-  box-sizing: border-box;
-
-  h1.title {
-    order: 1;
-    flex: 0 0 50%;
-    width: 100%;
-    max-height: 50%;
-    display: flex;
-    align-items: flex-end;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0 var(--title-side-pad) 0.55em;
-    color: $orange;
-    font-size: 2.1em !important;
-    font-weight: 600;
-    line-height: 1.05;
-    text-shadow: none;
-  }
-
-  .subtitle,
-  .date {
-    flex: 0 0 auto;
-    width: 100%;
-    margin: 0;
-    padding-left: var(--title-side-pad);
-    padding-right: var(--title-side-pad);
-    font-family: $font-family-sans-serif;
-    letter-spacing: 0.02em;
-    line-height: 1.25;
-    text-align: left;
-    opacity: 1;
-  }
-
-  .subtitle {
-    order: 2;
-    padding-top: 0.85em;
-    padding-bottom: 0;
-    font-size: 0.68em;
-    color: $apple;
-    font-weight: 400;
-  }
-
-  .date {
-    order: 3;
-    padding-top: 0.15em;
-    padding-bottom: 0;
-    font-size: 0.52em;
-    color: $apple;
-    font-weight: 400;
-  }
-
-  .quarto-title-authors {
-    order: 4;
-    flex: 0 0 auto;
-    width: 100%;
-    margin: 0;
-    padding: 0.15em var(--title-side-pad) 0.55em;
-    font-family: $font-family-sans-serif;
-    font-size: 0.52em;
-    letter-spacing: 0.02em;
-    line-height: 1.25;
-    color: $bananas;
-    font-weight: 400;
-    display: block;
-    text-align: left;
-    justify-content: flex-start;
-
-    .quarto-title-author {
-      margin: 0;
-      padding: 0;
-      display: block;
-      text-align: left;
-    }
-
-    .quarto-title-author-name {
-      margin: 0;
-      padding: 0;
-      font-size: inherit;
-      color: inherit;
-      font-weight: inherit;
-      line-height: inherit;
-      text-align: left;
-    }
-  }
-}
-
-@if $scheme == "google" {
-  @include slide-surface(".title-split") {
-    background: linear-gradient(180deg, $google-blue-medium 50%, $orange 50%);
-  }
-} @else {
-  @include slide-surface(".title-split") {
-    background: linear-gradient(180deg, $apple 50%, $orange 50%);
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Apple slides — apple text on orange ground
-// ---------------------------------------------------------------------------
-
-@if $scheme == "google" {
-  .reveal .slides section.apple {
-    @include paired-slide-content($apple, $apple-d, "Apples", $google-red-surface);
-    padding-bottom: 2.4em;
-  }
-
-  @include slide-surface(".apple") {
-    background: $google-red-surface;
-  }
-} @else {
-  .reveal .slides section.apple {
-    @include paired-slide-content($apple, $apple-d, "Apples", $orange);
-    padding-bottom: 2.4em;
-  }
-
-  @include slide-surface(".apple") {
-    background: $orange;
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Orange slides — orange text on apple ground
-// ---------------------------------------------------------------------------
-
-@if $scheme == "google" {
-  .reveal .slides section.orange {
-    @include paired-slide-content($orange, $orange-d, "Oranges", $google-blue-surface);
-    padding-bottom: 2.4em;
-  }
-
-  @include slide-surface(".orange") {
-    background: $google-blue-surface;
-  }
-} @else {
-  .reveal .slides section.orange {
-    @include paired-slide-content($orange, $orange-d, "Oranges", $apple);
-    padding-bottom: 2.4em;
-  }
-
-  @include slide-surface(".orange") {
-    background: $apple;
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Bananas slides — neutral content on bananas ground
-// ---------------------------------------------------------------------------
-
-.reveal .slides section.bananas {
-  @include bananas-slide-content($bananas, $bananas-d, "Neutral");
-  padding-bottom: 2.4em;
-}
-
-@include slide-surface(".bananas") {
-  background: $bananas;
-}
-
-@mixin compare-column($identity, $identity-d) {
-  color: $identity;
-  text-align: left;
-
-  .compare-label {
-    @include eyebrow($identity-d);
-    font-size: calc(#{$presentation-h2-font-size} * 0.42);
-    margin: 0 0 0.35em;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  h3 {
-    color: $identity;
-    font-size: $presentation-h3-font-size;
-    font-weight: 600;
-    margin: 0.45em 0 0.25em;
-  }
-
-  p,
-  li,
-  ul {
-    color: $identity;
-    font-size: inherit;
-    font-weight: 400;
-  }
-
-  strong {
-    color: $identity;
-    font-weight: 600;
-  }
-
-  ul {
-    margin-top: 0.35em;
-  }
-
-  li::marker {
-    color: currentColor;
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Comparison slide — left apple-on-orange / right orange-on-apple
-// ---------------------------------------------------------------------------
-
-.reveal .slides section.compare {
-  h2 {
-    display: none;
-    margin: 0;
-    padding: 0;
-    height: 0;
-  }
-
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.4em;
-    align-items: start;
-  }
-
-  .compare-apple {
-    @include compare-column($apple, $apple-d);
-  }
-
-  .compare-orange {
-    @include compare-column($orange, $orange-d);
-  }
-}
-
-@if $scheme == "google" {
-  @include slide-surface(".compare") {
-    background: linear-gradient(90deg, $google-red-surface 50%, $google-blue-surface 50%);
-  }
-} @else {
-  @include slide-surface(".compare") {
-    background: linear-gradient(90deg, $orange 50%, $apple 50%);
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Palette catalog slides (palettes.qmd)
-// ---------------------------------------------------------------------------
-
-@function chip-fg($bg) {
-  @return if(lightness($bg) > 52%, #1a1a1a, #f5f5f5);
-}
-
-.reveal .slides section.palette-show {
-  text-align: left;
-  padding: 1.1em 1.5em 2em;
-
-  h2 {
-    margin: 0 0 0.35em;
-    font-size: 1.45em;
-    text-transform: none;
-
-    &::before {
-      content: none;
-      display: none;
-    }
-  }
-
-  .palette-desc {
-    font-size: 0.48em;
-    line-height: 1.35;
-    margin: 0 0 1.1em;
-    opacity: 0.9;
-  }
-
-  .palette-identities {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.65em;
-    margin-bottom: 0.85em;
-  }
-
-  .palette-chip {
-    border-radius: 8px;
-    padding: 0.75em 0.65em 0.65em;
-    min-height: 3.4em;
-    font-family: $font-family-monospace;
-    font-size: 0.36em;
-    line-height: 1.3;
-
-    .palette-chip-label {
-      display: block;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.5em;
-    }
-  }
-
-  .palette-pairing {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.55em;
-    margin-bottom: 0.75em;
-    font-size: 0.42em;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-
-    .palette-pair-a,
-    .palette-pair-o {
-      border-radius: 8px;
-      padding: 0.65em 0.7em;
-    }
-  }
-
-  .palette-base {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45em;
-    font-family: $font-family-monospace;
-    font-size: 0.34em;
-
-    .palette-base-chip {
-      border-radius: 5px;
-      padding: 0.4em 0.55em;
-      min-width: 5.5em;
-
-      &::after {
-        display: block;
-        margin-top: 0.2em;
-        opacity: 0.88;
-        font-weight: 400;
-      }
-    }
-  }
-}
-
-@each $name, $palette in $palette-catalog {
-  $p-fg: map-get($palette, foreground);
-  $p-bg: map-get($palette, background);
-  $p-muted: map-get($palette, muted);
-  $p-apple: map-get($palette, apples);
-  $p-orange: map-get($palette, oranges);
-  $p-bananas: map-get($palette, bananas);
-
-  .reveal .slides section.palette-#{$name} {
-    color: $p-fg;
-
-    h2 {
-      color: $p-fg;
-    }
-
-    .palette-desc {
-      color: mix($p-fg, $p-muted, 70%);
-    }
-
-    .chip-apples {
-      background: $p-apple;
-      color: chip-fg($p-apple);
-
-      .palette-chip-label::after {
-        display: block;
-        content: "#{$p-apple}";
-        font-weight: 400;
-        margin-top: 0.35em;
-        letter-spacing: 0;
-        text-transform: none;
-        opacity: 0.92;
-      }
-    }
-
-    .chip-oranges {
-      background: $p-orange;
-      color: chip-fg($p-orange);
-
-      .palette-chip-label::after {
-        display: block;
-        content: "#{$p-orange}";
-        font-weight: 400;
-        margin-top: 0.35em;
-        letter-spacing: 0;
-        text-transform: none;
-        opacity: 0.92;
-      }
-    }
-
-    .chip-bananas {
-      background: $p-bananas;
-      color: chip-fg($p-bananas);
-
-      .palette-chip-label::after {
-        display: block;
-        content: "#{$p-bananas}";
-        font-weight: 400;
-        margin-top: 0.35em;
-        letter-spacing: 0;
-        text-transform: none;
-        opacity: 0.92;
-      }
-    }
-
-    @if $name == "google" {
-      .palette-pair-a {
-        color: $p-apple;
-        background: $google-red-surface;
-      }
-
-      .palette-pair-o {
-        color: $p-orange;
-        background: $google-blue-surface;
-      }
-    } @else {
-      .palette-pair-a {
-        color: $p-apple;
-        background: $p-orange;
-      }
-
-      .palette-pair-o {
-        color: $p-orange;
-        background: $p-apple;
-      }
-    }
-
-    .base-fg {
-      background: $p-fg;
-      color: chip-fg($p-fg);
-
-      &::after {
-        content: "#{$p-fg}";
-      }
-    }
-
-    .base-bg {
-      background: $p-bg;
-      color: chip-fg($p-bg);
-      border: 1px solid mix($p-muted, $p-bg, 45%);
-
-      &::after {
-        content: "#{$p-bg}";
-      }
-    }
-
-    .base-muted {
-      background: $p-muted;
-      color: chip-fg($p-muted);
-
-      &::after {
-        content: "#{$p-muted}";
-      }
-    }
-  }
-
-  @include slide-surface(".palette-#{$name}") {
-    background: $p-bg;
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Utility accents
-// ---------------------------------------------------------------------------
-
-.reveal {
-  div.callout .callout-icon-container {
-    display: none;
-  }
-
-  .text-apple {
-    color: $apple !important;
-    font-weight: 600;
-  }
-
-  .text-orange {
-    color: $orange !important;
-    font-weight: 600;
-  }
-
-  .text-bananas {
-    color: $bananas !important;
-    font-weight: 600;
-
-    @if lightness($bananas) > 58% {
-      text-shadow: 0 1px 2px rgba(mix($foreground, #000, 88%), 0.18);
-    }
-  }
-
-  .footer-label {
-    position: absolute;
-    bottom: 0.55em;
-    right: 1.4em;
-    z-index: 2;
-    font-family: $font-family-monospace;
-    font-size: 0.34em;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    opacity: 0.85;
-    pointer-events: none;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  .slide blockquote {
-    padding: 0.7em 1em;
-    border-radius: 0 8px 8px 0;
-    font-style: normal;
-    box-shadow: none;
-  }
-
-  h1,
-  h2,
-  h3 {
-    font-family: $presentation-heading-font;
-    font-weight: 600;
-    letter-spacing: -0.015em;
-  }
-
-  p,
-  li {
-    font-weight: 400;
-    font-family: $font-family-sans-serif;
-  }
-}
+.callout .callout-body, .callout .callout-body-container { background: transparent; color: $ao-muted-lt; }
+.callout-note { background: $ao-panel-lt; }
+
+// Scheme utility classes for HTML (mirror the deck tones) -------------
+.scheme-apple  { background: $ao-navy;   color: $ao-text-dark; border-radius: $border-radius; padding: 1.4rem 1.6rem; }
+.scheme-apple :is(h1,h2,h3,a) { color: #fff; }
+.scheme-orange { background: $ao-paper;  color: $ao-navy; border-radius: $border-radius; padding: 1.4rem 1.6rem; }
+.scheme-banana { background: $ao-banana; color: $ao-navy; border-radius: $border-radius; padding: 1.4rem 1.6rem; }

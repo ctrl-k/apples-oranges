@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; }
+</style>
+</helmet>
+
+<div style="background:#ECEEF2; color:#16284A; font-family:'Space Grotesk',sans-serif; min-height:100vh; padding:88px 96px 120px;">
+  <div style="max-width:1180px; margin:0 auto;">
+
+    <!-- ===== Header ===== -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1.5px solid #16284A; padding-bottom:48px; margin-bottom:80px;">
+      <div>
+        <div style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.42em; font-size:15px; color:#3B63B5; margin-bottom:26px;">Design System</div>
+        <div style="font-size:84px; font-weight:600; letter-spacing:-0.03em; line-height:0.98;">Apples &amp; Oranges</div>
+        <div style="font-size:24px; font-weight:500; color:#5E7BB0; margin-top:22px; max-width:640px; line-height:1.5;">A comparison framework with two opposing sides and a neutral tone. Same layout every time — only the palette flips.</div>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <span style="width:30px; height:30px; border-radius:50%; background:#16284A;"></span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#EDF3FC; border:1px solid #C6D6EE;"></span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#C3C9D2; border:1px solid #A9B0BC;"></span>
+      </div>
+    </div>
+
+    <!-- ===== 01 Schemes ===== -->
+    <div style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.4em; font-size:15px; color:#8AA0C4; margin-bottom:32px;">01 — Schemes</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:96px;">
+      <div style="border-radius:6px; overflow:hidden; border:1px solid #DCE5F2;">
+        <div style="background:#16284A; height:180px; padding:26px; display:flex; flex-direction:column; justify-content:space-between;">
+          <span style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.36em; font-size:14px; color:#7FA6E0;">Apples</span>
+          <span style="font-size:40px; font-weight:600; color:#DCE9FB;">Side A</span>
+        </div>
+        <div style="background:#FEFFFE; padding:22px 26px;"><div style="font-size:18px; color:#5E7BB0; line-height:1.5;">Dark ground, pale text. The first option — opens the pairing.</div></div>
+      </div>
+      <div style="border-radius:6px; overflow:hidden; border:1px solid #DCE5F2;">
+        <div style="background:#EDF3FC; height:180px; padding:26px; display:flex; flex-direction:column; justify-content:space-between;">
+          <span style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.36em; font-size:14px; color:#3B63B5;">Oranges</span>
+          <span style="font-size:40px; font-weight:600; color:#16284A;">Side B</span>
+        </div>
+        <div style="background:#FEFFFE; padding:22px 26px;"><div style="font-size:18px; color:#5E7BB0; line-height:1.5;">Inverted palette — navy text on a pale ground. Same layout, mirrored.</div></div>
+      </div>
+      <div style="border-radius:6px; overflow:hidden; border:1px solid #DCE5F2;">
+        <div style="background:#C3C9D2; height:180px; padding:26px; display:flex; flex-direction:column; justify-content:space-between; border-bottom:1px solid #A9B0BC;">
+          <span style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.36em; font-size:14px; color:#5E6671;">Banana</span>
+          <span style="font-size:40px; font-weight:600; color:#16284A;">Neutral</span>
+        </div>
+        <div style="background:#FEFFFE; padding:22px 26px;"><div style="font-size:18px; color:#5E7BB0; line-height:1.5;">Side-less tone for summaries, agenda, or shared context.</div></div>
+      </div>
+    </div>
+
+    <!-- ===== 02 Palette / token sheet ===== -->
+    <div style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.4em; font-size:15px; color:#8AA0C4; margin-bottom:32px;">02 — Palette &amp; tokens</div>
+    <div style="background:#FEFFFE; border:1px solid #DCE5F2; border-radius:6px; overflow:hidden; margin-bottom:96px;">
+      <div style="display:grid; grid-template-columns:repeat(2,1fr);">
+        <!-- left column tokens -->
+        <div style="border-right:1px solid #EAEFF7;">
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px; border-bottom:1px solid #EAEFF7;"><span style="width:46px; height:46px; border-radius:5px; background:#0F1D38; flex-shrink:0;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">ink / navy-900</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#0F1D38</span></div>
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px; border-bottom:1px solid #EAEFF7;"><span style="width:46px; height:46px; border-radius:5px; background:#16284A; flex-shrink:0;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">navy-800 · apples</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#16284A</span></div>
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px; border-bottom:1px solid #EAEFF7;"><span style="width:46px; height:46px; border-radius:5px; background:#20355C; flex-shrink:0;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">panel-dark</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#20355C</span></div>
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px; border-bottom:1px solid #EAEFF7;"><span style="width:46px; height:46px; border-radius:5px; background:#3B63B5; flex-shrink:0;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">accent · blue-600</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#3B63B5</span></div>
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px;"><span style="width:46px; height:46px; border-radius:5px; background:#6B8FC9; flex-shrink:0;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">soft · blue-500</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#6B8FC9</span></div>
+        </div>
+        <!-- right column tokens -->
+        <div>
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px; border-bottom:1px solid #EAEFF7;"><span style="width:46px; height:46px; border-radius:5px; background:#7FA6E0; flex-shrink:0;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">eyebrow · blue-400</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#7FA6E0</span></div>
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px; border-bottom:1px solid #EAEFF7;"><span style="width:46px; height:46px; border-radius:5px; background:#DCE9FB; flex-shrink:0; border:1px solid #C6D6EE;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">text-on-dark</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#DCE9FB</span></div>
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px; border-bottom:1px solid #EAEFF7;"><span style="width:46px; height:46px; border-radius:5px; background:#EDF3FC; flex-shrink:0; border:1px solid #C6D6EE;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">paper · oranges</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#EDF3FC</span></div>
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px; border-bottom:1px solid #EAEFF7;"><span style="width:46px; height:46px; border-radius:5px; background:#DEE9F8; flex-shrink:0; border:1px solid #C6D6EE;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">panel-light</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#DEE9F8</span></div>
+          <div style="display:flex; align-items:center; gap:20px; padding:20px 26px;"><span style="width:46px; height:46px; border-radius:5px; background:#C3C9D2; flex-shrink:0; border:1px solid #A9B0BC;"></span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#16284A; flex:1;">neutral · banana</span><span style="font-family:'Space Mono',monospace; font-size:16px; color:#8AA0C4;">#C3C9D2</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 03 Typography ===== -->
+    <div style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.4em; font-size:15px; color:#8AA0C4; margin-bottom:32px;">03 — Typography</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:40px;">
+      <div style="background:#FEFFFE; border:1px solid #DCE5F2; border-radius:6px; padding:36px 40px;">
+        <div style="font-size:72px; font-weight:600; letter-spacing:-0.02em; line-height:1; margin-bottom:18px;">Space Grotesk</div>
+        <div style="font-size:18px; color:#5E7BB0; line-height:1.5;">Display &amp; body — titles, points, scheme names. Weights 400 / 500 / 600.</div>
+      </div>
+      <div style="background:#FEFFFE; border:1px solid #DCE5F2; border-radius:6px; padding:36px 40px;">
+        <div style="font-family:'Space Mono',monospace; font-size:60px; font-weight:700; letter-spacing:-0.01em; line-height:1; margin-bottom:24px;">Space Mono</div>
+        <div style="font-size:18px; color:#5E7BB0; line-height:1.5;">Eyebrows, indices, code &amp; callout labels. Wide tracking, uppercase.</div>
+      </div>
+    </div>
+    <div style="background:#FEFFFE; border:1px solid #DCE5F2; border-radius:6px; overflow:hidden; margin-bottom:96px;">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:30px; padding:22px 34px; border-bottom:1px solid #EAEFF7;"><span style="font-size:54px; font-weight:600; letter-spacing:-0.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Display title</span><span style="font-family:'Space Mono',monospace; font-size:15px; color:#8AA0C4; white-space:nowrap;">96–154px / 600</span></div>
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:30px; padding:22px 34px; border-bottom:1px solid #EAEFF7;"><span style="font-size:40px; font-weight:500;">List point</span><span style="font-family:'Space Mono',monospace; font-size:15px; color:#8AA0C4; white-space:nowrap;">46px / 500</span></div>
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:30px; padding:22px 34px; border-bottom:1px solid #EAEFF7;"><span style="font-size:26px; font-weight:400; color:#3E588C;">Callout body copy</span><span style="font-family:'Space Mono',monospace; font-size:15px; color:#8AA0C4; white-space:nowrap;">28px / 400</span></div>
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:30px; padding:22px 34px;"><span style="font-family:'Space Mono',monospace; font-size:18px; text-transform:uppercase; letter-spacing:0.36em; color:#3B63B5;">Eyebrow label</span><span style="font-family:'Space Mono',monospace; font-size:15px; color:#8AA0C4; white-space:nowrap;">22–24px / 0.42em</span></div>
+    </div>
+
+    <!-- ===== 04 Components ===== -->
+    <div style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.4em; font-size:15px; color:#8AA0C4; margin-bottom:32px;">04 — Components</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+      <!-- numbered list row -->
+      <div style="background:#FEFFFE; border:1px solid #DCE5F2; border-radius:6px; padding:34px 40px;">
+        <div style="font-family:'Space Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:0.3em; color:#8AA0C4; margin-bottom:24px;">Numbered point</div>
+        <div style="border-top:1px solid rgba(22,40,74,.16);">
+          <div style="display:flex; gap:24px; align-items:baseline; padding:20px 0; border-bottom:1px solid rgba(22,40,74,.16);"><span style="font-family:'Space Mono',monospace; font-size:15px; color:#3B63B5;">01</span><div><div style="font-size:30px; font-weight:500; margin-bottom:6px;">Two options, one decision</div><div style="font-size:18px; color:#5E7BB0; line-height:1.45;">A supporting line adds detail under each point.</div></div></div>
+          <div style="display:flex; gap:24px; align-items:baseline; padding:20px 0;"><span style="font-family:'Space Mono',monospace; font-size:15px; color:#3B63B5;">02</span><div><div style="font-size:30px; font-weight:500; margin-bottom:6px;">Each side, its own voice</div><div style="font-size:18px; color:#5E7BB0; line-height:1.45;">Lead line plus optional description.</div></div></div>
+        </div>
+      </div>
+      <!-- swatch trio -->
+      <div style="background:#FEFFFE; border:1px solid #DCE5F2; border-radius:6px; padding:34px 40px;">
+        <div style="font-family:'Space Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:0.3em; color:#8AA0C4; margin-bottom:24px;">Scheme swatches</div>
+        <div style="display:flex; gap:12px;">
+            <span style="flex:1; height:96px; border-radius:5px; background:#16284A;"></span>
+            <span style="flex:1; height:96px; border-radius:5px; background:#EDF3FC; border:1px solid #C6D6EE;"></span>
+            <span style="flex:1; height:96px; border-radius:5px; background:#C3C9D2; border:1px solid #A9B0BC;"></span>
+        </div>
+      </div>
+      <!-- callout note -->
+      <div style="background:#16284A; border-radius:6px; padding:34px 40px;">
+        <div style="font-family:'Space Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:0.3em; color:#6B8FC9; margin-bottom:24px;">Callout — on dark</div>
+        <div style="background:#20355C; padding:30px 32px; border-radius:4px;">
+          <div style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.32em; font-size:14px; color:#7FA6E0; margin-bottom:14px;">Note</div>
+          <div style="font-size:22px; line-height:1.5; color:#B9CBE8;">Pale text on a desaturated navy-tint panel.</div>
+        </div>
+      </div>
+      <!-- code card -->
+      <div style="background:#FEFFFE; border:1px solid #DCE5F2; border-radius:6px; padding:34px 40px;">
+        <div style="font-family:'Space Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:0.3em; color:#8AA0C4; margin-bottom:24px;">Code card</div>
+        <div style="background:#0F1D38; padding:28px 32px; border-radius:4px; font-family:'Space Mono',monospace; font-size:22px; line-height:1.7;">
+          <div style="color:#6B8FC9;"># choose a variety</div>
+          <div><span style="color:#DCE9FB;">variety</span> <span style="color:#5E7BB0;">=</span> <span style="color:#9FC2F2;">"honeycrisp"</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 05 Slide layouts ===== -->
+    <div style="font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.4em; font-size:15px; color:#8AA0C4; margin:96px 0 32px;">05 — Slide layouts</div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px;">
+      <!-- title split -->
+      <div>
+        <div style="aspect-ratio:16/9; border-radius:5px; overflow:hidden; border:1px solid #DCE5F2; position:relative; display:flex; flex-direction:column;">
+          <div style="flex:1; background:#16284A; position:relative;"><div style="position:absolute; left:12%; bottom:14%; width:46%; height:9px; border-radius:3px; background:#DCE9FB;"></div></div>
+          <div style="flex:1; background:#EDF3FC; position:relative;"><div style="position:absolute; left:12%; top:16%; width:34%; height:6px; border-radius:3px; background:#3B63B5;"></div></div>
+        </div>
+        <div style="font-family:'Space Mono',monospace; font-size:14px; color:#16284A; margin-top:14px;">Title — split</div>
+        <div style="font-size:15px; color:#8AA0C4; margin-top:4px;">Title above the line, subtitle below.</div>
+      </div>
+      <!-- themed content -->
+      <div>
+        <div style="aspect-ratio:16/9; border-radius:5px; overflow:hidden; border:1px solid #DCE5F2; background:#16284A; padding:16px 18px; display:flex; flex-direction:column; gap:8px;">
+          <div style="width:34%; height:7px; border-radius:3px; background:#7FA6E0;"></div>
+          <div style="width:62%; height:14px; border-radius:3px; background:#DCE9FB; margin:4px 0;"></div>
+          <div style="display:flex; gap:12px; flex:1;">
+            <div style="flex:1.3; display:flex; flex-direction:column; gap:7px; justify-content:center;"><div style="height:6px; background:#3E588C; border-radius:2px;"></div><div style="height:6px; width:80%; background:#3E588C; border-radius:2px;"></div><div style="height:6px; width:88%; background:#3E588C; border-radius:2px;"></div></div>
+            <div style="flex:1; background:#20355C; border-radius:3px;"></div>
+          </div>
+        </div>
+        <div style="font-family:'Space Mono',monospace; font-size:14px; color:#16284A; margin-top:14px;">Themed content</div>
+        <div style="font-size:15px; color:#8AA0C4; margin-top:4px;">Points + callout / code.</div>
+      </div>
+      <!-- comparison -->
+      <div>
+        <div style="aspect-ratio:16/9; border-radius:5px; overflow:hidden; border:1px solid #DCE5F2; position:relative; display:flex;">
+          <div style="flex:1; background:#16284A; padding:16px; display:flex; flex-direction:column; gap:6px; justify-content:center;"><div style="height:6px; width:70%; background:#9DB6DE; border-radius:2px;"></div><div style="height:6px; width:55%; background:#9DB6DE; border-radius:2px;"></div></div>
+          <div style="flex:1; background:#EDF3FC; padding:16px; display:flex; flex-direction:column; gap:6px; justify-content:center; align-items:flex-end;"><div style="height:6px; width:70%; background:#5E7BB0; border-radius:2px;"></div><div style="height:6px; width:55%; background:#5E7BB0; border-radius:2px;"></div></div>
+        </div>
+        <div style="font-family:'Space Mono',monospace; font-size:14px; color:#16284A; margin-top:14px;">Comparison</div>
+        <div style="font-size:15px; color:#8AA0C4; margin-top:4px;">Mirror split, same rows.</div>
+      </div>
+      <!-- neutral -->
+      <div>
+        <div style="aspect-ratio:16/9; border-radius:5px; overflow:hidden; border:1px solid #DCE5F2; background:#C3C9D2; padding:16px 18px; display:flex; flex-direction:column; gap:8px;">
+          <div style="width:30%; height:7px; border-radius:3px; background:#5E6671;"></div>
+          <div style="width:58%; height:14px; border-radius:3px; background:#16284A; margin:4px 0;"></div>
+          <div style="display:flex; gap:8px; margin-top:auto;"><div style="flex:1; height:22px; border-radius:3px; background:#16284A;"></div><div style="flex:1; height:22px; border-radius:3px; background:#EDF3FC; border:1px solid #C6D6EE;"></div><div style="flex:1; height:22px; border-radius:3px; background:#AEB5C1; border:1px solid #98A0AE;"></div></div>
+        </div>
+        <div style="font-family:'Space Mono',monospace; font-size:14px; color:#16284A; margin-top:14px;">Neutral</div>
+        <div style="font-size:15px; color:#8AA0C4; margin-top:4px;">Banana ground, side-less.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:2400}}"></script>
+</body>
+</html>
